@@ -9,7 +9,7 @@ path="/Users/$USER/Library/Preferences/Ableton"
 #Loop through the Ableton Live version folders. Find the Options file and replaces the license server line.
 for dir in "$path"/* ; do
 	[ -d "$dir" ] || continue
-
-	#Change the license server line, Save original with .bak postfix to roll back if user needs to.
-	sed -i '.bak' -r -e 's/-[Ll]icenseserver//g' "$dir"/Options.txt
+	
+	# Rename file so license server option doesn't run
+	mv "$dir"/Options.txt "$dir"/Options.txt.bak
 done

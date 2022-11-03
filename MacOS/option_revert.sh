@@ -9,7 +9,10 @@ path="/Users/$USER/Library/Preferences/Ableton"
 #Loop through the Ableton Live version folders. Find the Options file and replaces the license server line.
 for dir in "$path"/* ; do
 	[ -d "$dir" ] || continue
-
+	
+	# Check if backup exist else Options.txt is removed and not replaced
+	[ -f "$dir"/Options.txt.bak ] || echo "no revert file"; continue 
+	
 	# Remove Options file without -licenseserver then rename .bak to be Options.txt
 	rm "$dir"/Options.txt
 	mv "$dir"/Options.txt.bak "$dir"/Options.txt 
